@@ -1,0 +1,124 @@
+# 容器默认预设文件
+# 区域编码
+export LC_ALL=zh_CN.UTF-8
+# 时区
+export TZ=Asia/Shanghai
+# 启用ESYNC （高版本wine-staging已经彻底弃用！社区维护困难,请使用10.16之前的wine）
+#export WINEESYNC=0
+# 启用FSYNC (高版本wine-staging已经彻底弃用！社区维护困难,请使用10.16之前的wine)
+export WINEFSYNC=1
+# 启用NTSYNC，10.16已经加入，需要6.14+内核，老版本应用NTSYNC补丁的才需要变量启动
+#export WINENTSYNC=1
+# 设置为"-all"禁用全部，推荐预设为"+fixme,+err,+warn"
+export WINEDEBUG="+fixme,+err,+warn"
+# MESA驱动错误
+export MESA_NO_ERROR=1
+# DXVK 调试 none|error|warn|info|debug
+export DXVK_LOG_LEVEL=none
+# GL渲染是否垂直同步
+export vblank_mode=0
+# VK渲染垂直同步
+# immediate 不垂直同步，画面撕裂
+# mailbox 平衡性能与画面
+# fifo_relaxed 自适应垂直同步
+# fifo 垂直同步
+
+export MESA_VK_WSI_PRESENT_MODE=mailbox
+
+# VK垂直同步（不存在于mesa官方文档），设置为sw启用垂直同步(可以和 MESA_VK_WSI_PRESENT_MODE搭配)
+# 其他值都为禁用
+export MESA_VK_WSI_DEBUG=nosw
+# 设置为1解决视频解码问题（仅限proton wine 和补丁wine）
+#export WINE_DO_NOT_CREATE_DXGI_DEVICE_MANAGER=1
+# DXVK HUD
+# fps,version,api
+# fps,version,api,devinfo
+# fps,version,api,devinfo,frametime
+
+export DXVK_HUD=fps,version,api
+# OpenGL HUD (GALLIUM驱动HUD)
+# simple,fps
+# fps
+
+export GALLIUM_HUD=simple,fps
+
+#export ZINK_CONTEXT_MODE=base
+# threaded 强制使用 线程化上下文
+# base 强制使用 基础上下文
+# auto 自动选择
+
+#export ZINK_CONTEXT_THREADED
+# 类型为bool值，true/1启用 false/0禁用，解决游戏卡死可能需要启用？
+
+#export MESA_LOADER_DRIVER_OVERRIDE=zink
+# 使用zink
+#export GALLIUM_DRIVER=zink
+# 使用zink gallium驱动
+
+#export ZINK_DESCRIPTORS=lazy
+# auto 自动选择（默认）
+# lazy 尝试通过机会性地绑定描述符来使用最少量的 CPU（常见）
+# db 尽可能使用 EXT_descriptor_buffer。
+
+#export ZINK_DEBUG=compact
+
+# compact常见
+# 接受以下以逗号分隔的标志列表:
+# nir
+# 将所有着色器的 NIR 形式打印到 stderr。
+# spirv
+# 将所有编译着色器的二进制 SPIR-V 形式写入文件 当前目录,并将带有文件名的消息打印到 stderr。
+# tgsi
+# 将 TGSI 着色器的 TGSI 形式打印到 stderr。
+# validation
+# 转储验证层输出。
+# sync
+# 每次抽奖和调度前发出完全同步屏障。
+# compact
+# 最多使用 4 个描述符集
+# noreorder
+# 请勿重新排序或优化 GL 命令流
+# gpl
+# 强制所有着色器使用图形管道库
+# rp
+# 启用渲染传递优化（用于平铺 GPU）
+# norp
+# 禁用渲染传递优化（用于平铺 GPU）
+# map
+# 打印有关映射 VRAM 的信息
+# flushsync
+# 强制同步刷新/呈现
+# noshobj
+# 禁用 EXT_shader_object
+# optimal_keys
+# 调试/使用最优_键
+# noopt
+# 禁用异步优化管道编译
+# nobgc
+# 禁用所有异步管道编译
+# mem
+# 启用内存分配调试
+# quiet
+# 抑制可能无害的警告
+# nopc
+# 无预编译
+# msaaopt
+# 优化 MSAA 附件（不合格）的负载/存储
+# rploads
+# Zap renderpass 加载 DONT_CARE
+# nogeneral
+# 禁用受支持硬件的通用布局使用
+
+#export DXVK_SHADER_CACHE_PATH=""
+# dxvk缓存路径
+
+#export LIBGL_USE_SOFTWARE=1
+
+#export ZINK_USE_LAVAPIPE=1
+# 新mesa驱动不推荐用这个，用LIBGL_USE_SOFTWARE
+
+##########
+# CPU渲染 #
+##########
+#export LIBGL_ALWAYS_SOFTWARE=1
+# 使GL渲染使用llvmpipe

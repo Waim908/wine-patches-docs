@@ -3,6 +3,10 @@ Wine patches and documentation.wine补丁与文档。
 
 此项目用于整理相对通用的wine构建补丁解决方案与教程。
 
+# 通过合理的变量设置让速度与功能得以提升！
+
+- [环境变量(通用)](environment.txt)
+
 # 函数库（DLLOVERRIDE）
 
 可以通过winecfg直接图形化完成配置！
